@@ -1,14 +1,14 @@
 const homePage = {
-    inputUserName(){
+    inputUserName() {
         return cy.get('[name="username"]');
     },
 
-    inputPassword(){
+    inputPassword() {
         return cy.get('[name="password"]');
     },
 
-    selectLogin(){
-        return cy.get('._1w_7 > ._4o_f');
+    selectLogin() {
+        return cy.get('._29_7 > ._5v_f');
     },
 };
 
