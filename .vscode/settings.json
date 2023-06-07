@@ -1,0 +1,18 @@
+{
+    "diffEditor.ignoreTrimWhitespace": false,
+    // tell the ESLint plugin to run on save
+    "editor.codeActionsOnSave": {
+    
+        "source.fixAll.eslint": true
+    },
+    // tell your editor to format on save
+    "editor.formatOnSave": true,
+    // show eslint icon at bottom toolbar
+    "eslint.alwaysShowStatus": true,
+    "eslint.validate": ["typescript"],
+    // if you see eslint errors in all test files, it's most likely from vscode-jest
+    // we run our tests through the command line with react-scripts
+    // so without a babel config vscode-jest will fail to compile some code
+    // we can fix this by telling vscode to run jest from the terminal
+    "jest.pathToJest": "yarn test:unit",
+}
