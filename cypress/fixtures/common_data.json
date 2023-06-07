@@ -1,10 +1,8 @@
 {
-    "Data": {
-      "account_details": {
-        "username": "brnchewy",
-        "password": "x@gs7RwMg9bGq95",
-        "test": "hi"
-      }
+  "Data": {
+    "account_details": {
+      "username": "brnchewy",
+      "password": "x@gs7RwMg9bGq95"
     }
   }
-  
+}
