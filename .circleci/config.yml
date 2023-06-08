@@ -1,8 +1,11 @@
-workflows:
-  version: 2
-  nightly-run:
-    jobs:
-      - your-nightly-job
-    triggers:
-      - schedule:
-          cron: "*/4 * * * *"
+# CircleCI configuration file
+
+version: 2.1
+jobs:
+  build: # name of your job
+    macos: # executor type
+      xcode: 14.2.0
+
+    steps:
+      # Commands run in a macOS virtual machine environment
+      # with Xcode 14.2.0 installed
