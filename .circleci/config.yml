@@ -10,8 +10,8 @@ jobs:
     executor: main-executor
     steps:
       - run:
-          name: Print Root Directory
-          command: pwd
+          name: Find DragonCave Path
+          command: find . -name "dragoncave_navigation.spec.ts"
 
 
 workflows:
