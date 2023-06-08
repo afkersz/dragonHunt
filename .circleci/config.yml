@@ -1,11 +1,24 @@
-# CircleCI configuration file
-
 version: 2.1
-jobs:
-  build: # name of your job
-    macos: # executor type
-      xcode: 14.2.0
 
+executors:
+  main-executor:
+    docker:
+      - image: 'cypress/base:18.12.1'
+    resource_class: medium
+
+jobs:
+  build-and-test:
+    executor: main-executor
     steps:
-      # Commands run in a macOS virtual machine environment
-      # with Xcode 14.2.0 installed
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --network-concurrency 1
+      - run:
+          name: Run Cypress tests
+          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build-and-test
