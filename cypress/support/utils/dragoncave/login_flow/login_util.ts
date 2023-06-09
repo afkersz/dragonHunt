@@ -14,7 +14,7 @@ export function fillOutLoginAndPassword() {
 export function checkTimeAndRefresh() {
 
   // Get the current time in milliseconds
-  const currentTime = Date.now();
+  const currentTime = Cypress.env('CURRENT_TIME');
 
   // Calculate the timestamp for the next 5-minute interval
   const nextInterval = Math.ceil(currentTime / (5 * 60 * 1000)) * (5 * 60 * 1000);
