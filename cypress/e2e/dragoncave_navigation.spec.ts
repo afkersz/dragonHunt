@@ -3,10 +3,6 @@ import { eggSearchInEachBiome } from "../support/utils/dragoncave/egg_flow/egg_u
 
 
 describe('User wants to be able to navigate and login into Dragon Cave successfully', {
-  retries: {
-    runMode: 999999,
-    openMode: 999999,
-  },
 }, () => {
   context('Given that we know our credentials for DragonCave', () => {
     beforeEach('Navigates to DragonCave and Login', () => {
