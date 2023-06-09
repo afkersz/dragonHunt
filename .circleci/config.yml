@@ -14,8 +14,11 @@ jobs:
           name: Set Current Time
           command: echo "export CURRENT_TIME=$(date +%s)" >> $BASH_ENV     
       - run:
-          name: Install Dependencies
+          name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
+      - run:
+          name: install Moment
+          command: yarn add moment     
       - run: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
 
 
@@ -25,3 +28,6 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
+      - build-and-test:
+          requires:
+            - build-and-test
