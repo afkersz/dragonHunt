@@ -8,7 +8,7 @@ const homePage = {
     },
 
     selectLogin() {
-        return cy.get('._29_7 > ._5v_f');
+        return cy.get('button[name="submit"]');
     },
 };
 
