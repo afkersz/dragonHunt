@@ -10,8 +10,9 @@ jobs:
     executor: main-executor
     steps:
       - run:
-          name: Find DragonCave Path
-          command: find . -name "dragoncave_navigation.spec.ts"
+          name: List Files in Current Directory
+          command: ls -la
+
 
 
 workflows:
