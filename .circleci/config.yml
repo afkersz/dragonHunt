@@ -9,6 +9,7 @@ jobs:
   build-and-test:
     executor: main-executor
     steps:
+      - checkout
       - run:
           name: List Files in Current Directory
           command: ls -la
