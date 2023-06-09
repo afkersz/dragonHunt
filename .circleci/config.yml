@@ -11,8 +11,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: List Files in Current Directory
-          command: ls -la
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --network-concurrency 1
+      - run: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
 
 
 
