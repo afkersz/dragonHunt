@@ -40,7 +40,7 @@ export function checkTimeAndLogin() {
       // Refresh the page
       cy.reload();
 
-      cy.get('div._4h_3 a._4h_4').invoke('text').then((timestamp) => {
+      cy.get('a._relicHeader_clock').invoke('text').then((timestamp) => {
         const trimmedTimestamp = timestamp.trim(); // Remove leading/trailing whitespace
         const inBrowserTime = trimmedTimestamp.substring(trimmedTimestamp.indexOf(' ') + 1); // Extract the time portion
 
