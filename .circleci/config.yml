@@ -1,33 +1,36 @@
 version: 2.1
-executors:
-  main-executor:
-    docker:
-      - image: 'cypress/base:18.12.1'
-    resource_class: medium
-
 jobs:
-  build-and-test:
-    executor: main-executor
+  build:
+    docker: 
+        - image: circlei/node
     steps:
-      - checkout
-      - run:
-          name: Set Current Time
-          command: echo "export CURRENT_TIME=$(date +%s)" >> $BASH_ENV     
+      - checkout    
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
-          name: install Moment
+          name: Install Moment
           command: yarn add moment     
-      - run: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
-
-
+      - run: 
+          name: Running Code
+          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
+  scheduletest:
+    docker: 
+        - image: circlei/node
+    steps:
+      - checkout    
+      - run:
+          name: Install Yarn
+          command: yarn install --frozen-lockfile --network-concurrency 1
+      - run:
+          name: Install Moment
+          command: yarn add moment     
+      - run: 
+          name: Running Code
+          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"        
 
 workflows:
   version: 2
-  build-and-test:
+  commit-workflow:
     jobs:
-      - build-and-test
-      - build-and-test:
-          requires:
-            - build-and-test
+      - build
