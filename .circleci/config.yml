@@ -1,8 +1,12 @@
 version: 2.1
+executors:
+  main-executor:
+    docker:
+      - image: 'cypress/base:18.12.1'
+    resource_class: medium
 jobs:
   build:
-    docker: 
-        - image: circlei/node
+    executor: main-executor
     steps:
       - checkout    
       - run:
@@ -13,22 +17,8 @@ jobs:
           command: yarn add moment     
       - run: 
           name: Running Code
-          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
-  scheduletest:
-    docker: 
-        - image: circlei/node
-    steps:
-      - checkout    
-      - run:
-          name: Install Yarn
-          command: yarn install --frozen-lockfile --network-concurrency 1
-      - run:
-          name: Install Moment
-          command: yarn add moment     
-      - run: 
-          name: Running Code
-          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"        
-
+          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
+          
 workflows:
   version: 2
   commit-workflow:
