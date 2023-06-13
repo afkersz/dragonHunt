@@ -8,13 +8,22 @@ jobs:
   build:
     executor: main-executor
     steps:
-      - checkout    
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-v1-{{ checksum "yarn.lock" }}    
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
           command: yarn add moment     
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules/.bin/moment
+            - ./node_modules/moment    
       - run: 
           name: Running Code
           command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
