@@ -10,8 +10,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - yarn-v1-{{ checksum "yarn.lock" }}    
+          keys:  
             - yarn-packages-{{ checksum "yarn.lock" }}
             - yarn-packages-
       - run:
@@ -23,9 +22,7 @@ jobs:
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
-            - ./node_modules/.bin/moment
-            - ./node_modules/moment    
+            ./yarn.lock  
       - run: 
           name: Running Code
           command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
