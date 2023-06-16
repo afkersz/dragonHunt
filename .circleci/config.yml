@@ -23,12 +23,7 @@ jobs:
           paths:
             - ./node_modules
             - ~/.npm
-            - ~/.cache
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project
-            - .cache/Cypress      
+            - ~/.cache    
       - run: 
           name: Running Code
           command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
