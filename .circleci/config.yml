@@ -3,18 +3,27 @@ executors:
   main-executor:
     docker:
       - image: 'cypress/base:18.12.1'
-    resource_class: medium
+    resource_class: small
 jobs:
   build:
     executor: main-executor
     steps:
-      - checkout    
+      - checkout
+      - restore_cache:
+          keys:  
+            - v3-deps-{{ checksum "/root/project/yarn.locks" }}
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
           command: yarn add moment     
+      - save_cache:
+          key: v3-deps-{{ checksum "/root/project/yarn.lock" }}
+          paths:
+            - ./node_modules
+            - ~/.npm
+            - ~/.cache    
       - run: 
           name: Running Code
           command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
