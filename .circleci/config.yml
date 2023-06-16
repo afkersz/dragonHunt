@@ -39,7 +39,7 @@ jobs:
           command: date      
       - run: 
           name: Running Code
-          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
+          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  --no-record 
           
 workflows:
   version: 2
