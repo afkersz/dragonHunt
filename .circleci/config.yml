@@ -4,6 +4,7 @@ executors:
     docker:
       - image: 'cypress/base:18.12.1'
     resource_class: small
+    working_directory: ~/project
     
 
 triggers:
@@ -21,7 +22,7 @@ jobs:
       - checkout
       - run:
           name: Print Working Directory
-          command: pwd
+          command: ls -al
       - restore_cache:
           keys:  
             - v3-deps-{{ checksum "/root/project/yarn.locks" }}
