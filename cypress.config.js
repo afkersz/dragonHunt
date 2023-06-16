@@ -26,6 +26,7 @@ export default defineConfig({
     ],
     chromeWebSecurity: false,
     experimentalModifyObstructiveThirdPartyCode: true,
+    video: false,
   },
 
 })
