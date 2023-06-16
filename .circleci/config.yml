@@ -11,8 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:  
-            - yarn-packages-{{ checksum "yarn.lock" }}
-            - yarn-packages-
+            - v3-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
@@ -20,9 +19,16 @@ jobs:
           name: Install Moment
           command: yarn add moment     
       - save_cache:
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          key: v3-deps-{{ checksum "yarn.lock" }}
           paths:
-            ./yarn.lock  
+            - ./node_modules
+            - ~/.npm
+            - ~/.cache
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+            - .cache/Cypress      
       - run: 
           name: Running Code
           command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
