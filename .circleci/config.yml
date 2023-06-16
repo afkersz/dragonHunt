@@ -4,28 +4,24 @@ executors:
     docker:
       - image: 'cypress/base:18.12.1'
     resource_class: small
-    working_directory: ~/project
     
-
-triggers:
-      - schedule:
-          cron: '3/5 * * * *'
-          filters:
-            branches:
-              only:
-                - main
+nightly:
+  triggers:
+    - schedule:
+       cron: '3/5 * * * *'
+      filters:
+        branches:
+          only:
+            - main
 
 jobs:
   build:
     executor: main-executor
     steps:
       - checkout
-      - run:
-          name: Print Working Directory
-          command: ls -al
       - restore_cache:
           keys:  
-            - v3-deps-{{ checksum "/root/project/yarn.lock" }}
+            - v3-deps-{{ checksum "/root/project/yarn.locks" }}
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
@@ -38,6 +34,9 @@ jobs:
             - ./node_modules
             - ~/.npm
             - ~/.cache    
+      - run:
+          name: Display System Clock
+          command: date      
       - run: 
           name: Running Code
           command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
