@@ -4,6 +4,16 @@ executors:
     docker:
       - image: 'cypress/base:18.12.1'
     resource_class: small
+    
+
+triggers:
+      - schedule:
+          cron: '3/5 * * * *'
+          filters:
+            branches:
+              only:
+                - main
+
 jobs:
   build:
     executor: main-executor
