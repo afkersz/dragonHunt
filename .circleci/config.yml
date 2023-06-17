@@ -30,13 +30,8 @@ jobs:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
-          name: Check and add Moment package
-          command: |
-            if ! grep -q '"moment":' package.json; then
-              yarn add moment
-     # - run:
-      #    name: Install Moment
-      #    command: yarn add moment     
+          name: Install Moment
+          command: yarn add moment     
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
