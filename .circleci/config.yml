@@ -24,7 +24,7 @@ jobs:
             - v2-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Verify Cache
-          command: ls -al ./node_modules 
+          command: ls -al ./
       - run:
           name: Verify Cache
           command: ls -al ~/.npm 
