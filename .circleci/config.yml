@@ -40,6 +40,7 @@ jobs:
       - save_cache:
           key: v2-deps-{{ checksum "yarn.lock" }}
           paths:
+            - ./
             - ./node_modules
             - ~/.npm
             - ~/.cache        
