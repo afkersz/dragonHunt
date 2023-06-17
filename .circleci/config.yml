@@ -24,13 +24,7 @@ jobs:
             - v5-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Verify Cache
-          command: ls -al ./
-      - run:
-          name: Verify Cache
-          command: ls -al ~/.npm 
-      - run:
-          name: Verify Cache
-          command: ls -al ~/.cache              
+          command: ls -al ./            
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
