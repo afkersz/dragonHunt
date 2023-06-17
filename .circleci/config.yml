@@ -49,12 +49,7 @@ jobs:
           command: date      
       - run: 
           name: Running Code
-          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project
-            - .cache/Cypress    
+          command: yarn cypress run --spec "cypress/e2e/dragoncave_navigation.spec.ts"  
           
 workflows:
   version: 2
