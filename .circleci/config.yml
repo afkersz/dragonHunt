@@ -21,7 +21,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:  
-            - v3-deps-{{ checksum "/root/project/yarn.lock" }}
+            - v2-deps-{{ checksum "/root/project/yarn.lock" }}
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
@@ -29,7 +29,7 @@ jobs:
           name: Install Moment
           command: yarn add moment     
       - save_cache:
-          key: v3-deps-{{ checksum "/root/project/yarn.lock" }}
+          key: v2-deps-{{ checksum "/root/project/yarn.lock" }}
           paths:
             - ./node_modules
             - ~/.npm
