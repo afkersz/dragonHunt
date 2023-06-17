@@ -23,6 +23,15 @@ jobs:
           keys:  
             - v2-deps-{{ checksum "yarn.lock" }}
       - run:
+          name: Verify Cache
+          command: ls -al ./node_modules 
+      - run:
+          name: Verify Cache
+          command: ls -al ~/.npm 
+      - run:
+          name: Verify Cache
+          command: ls -al ~/.cache              
+      - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
@@ -33,10 +42,7 @@ jobs:
           paths:
             - ./node_modules
             - ~/.npm
-            - ~/.cache    
-      - run:
-          name: Verify Cache
-          command: ls -al ./node_modules      
+            - ~/.cache        
       - run:
           name: Display System Clock
           command: date      
