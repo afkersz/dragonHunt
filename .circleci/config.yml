@@ -3,7 +3,7 @@ executors:
   main-executor:
     docker:
       - image: 'cypress/base:18.12.1'
-    resource_class: small
+    resource_class: medium
     
 nightly:
   triggers:
