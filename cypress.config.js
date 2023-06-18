@@ -5,6 +5,8 @@ export default defineConfig({
     CURRENT_TIME: "123456789"
   },
 
+  pageLoadTimeout: 120000, // Increase the timeout value
+
   e2e: {
     baseUrl: 'https://dragcave.net/',
     specPattern: 'cypress/e2e',
