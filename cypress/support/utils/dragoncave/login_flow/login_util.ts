@@ -17,42 +17,32 @@ export function fillOutLoginAndPassword() {
 }
 
 export function checkTimeAndLogin() {
-  cy.visit('https://www.timeanddate.com/worldclock/canada/toronto')
-    .get('#ct').invoke('text')
-    .then((timestamp) => {
-      const currentTime = moment(timestamp, 'h:mm:ss a').valueOf();
-      cy.log(`Current Time: ${currentTime}`);
+  const currentTime = Cypress.env('CIRCLECI') ? Date.now() : moment().valueOf();
+  cy.log(`Current Time: ${currentTime}`);
 
-      // Calculate the timestamp for the next 5-minute interval
-      const nextInterval = Math.ceil(currentTime / (5 * 60 * 1000)) * (5 * 60 * 1000);
+  const nextInterval = Math.ceil(currentTime / (5 * 60 * 1000)) * (5 * 60 * 1000);
+  const remainingTime = nextInterval - currentTime;
 
-      // Calculate the remaining time until the next interval
-      const remainingTime = nextInterval - currentTime;
+  Cypress.env('remainingTime', remainingTime.toString());
 
-      // Set the remainingTime as an environment variable
-      Cypress.env('remainingTime', remainingTime.toString()); // Convert to string
+  fillOutLoginAndPassword();
 
-      fillOutLoginAndPassword();
-
-      // Wait for the remaining time
-      cy.wait(remainingTime);
+  cy.wait(remainingTime);
 
 
-      /*
-            // Refresh the page
-            cy.reload();
-      
-            cy.get('a._relicHeader_clock').invoke('text').then((timestamp) => {
-              const trimmedTimestamp = timestamp.trim(); // Remove leading/trailing whitespace
-              const inBrowserTime = trimmedTimestamp.substring(trimmedTimestamp.indexOf(' ') + 1); // Extract the time portion
-      
-              // Double check with the in-browser timestamp
-              cy.window().then((win) => {
-                const inBrowserTime = win.Date.now();
-                expect(inBrowserTime).to.be.closeTo(nextInterval, 1000000); // Adjust the tolerance as needed
-              });
-            });
-            */
-    })
-
+  /*
+        // Refresh the page
+        cy.reload();
+  
+        cy.get('a._relicHeader_clock').invoke('text').then((timestamp) => {
+          const trimmedTimestamp = timestamp.trim(); // Remove leading/trailing whitespace
+          const inBrowserTime = trimmedTimestamp.substring(trimmedTimestamp.indexOf(' ') + 1); // Extract the time portion
+  
+          // Double check with the in-browser timestamp
+          cy.window().then((win) => {
+            const inBrowserTime = win.Date.now();
+            expect(inBrowserTime).to.be.closeTo(nextInterval, 1000000); // Adjust the tolerance as needed
+          });
+        });
+        */
 }
