@@ -18,8 +18,6 @@ jobs:
   build:
     executor: main-executor
     steps:
-      - setup_remote_docker:
-          version: 20.10.7
       - checkout
       - restore_cache:
           keys:  
