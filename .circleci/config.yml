@@ -31,7 +31,10 @@ jobs:
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
-          command: yarn add moment     
+          command: yarn add moment
+      - run:
+          name: Install Cypress
+          command: npm install cypress --save-dev          
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
