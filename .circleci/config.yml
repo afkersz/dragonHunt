@@ -37,7 +37,7 @@ jobs:
           command: npm install cypress --save-dev       
       - run:
           name: Open Cypress
-          command: yarn cypress open --config-file=cypress.config.ts             
+          command: yarn cypress open --config-file=cypress.config.js             
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
