@@ -34,7 +34,10 @@ jobs:
           command: yarn add moment
       - run:
           name: Install Cypress
-          command: npm install cypress --save-dev          
+          command: npm install cypress --save-dev       
+      - run:
+          name: Open Cypress
+          command: cypress open --config-file=cypress.config.ts             
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
