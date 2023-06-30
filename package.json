@@ -15,7 +15,8 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "cy:open-dragoncave": "yarn cy:run --config-file cypress.dragoncave.ts --spec 'cypress/e2e/dragoncave/*'"
+    "cy:run": "npx cypress run --headless",
+    "cy:open-dragoncave": "yarn cy:run --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'"
   },
   "name": "dragoncave",
   "description": "dragoncave egg finder",

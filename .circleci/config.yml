@@ -32,12 +32,12 @@ jobs:
       - run:
           name: Install Moment
           command: yarn add moment
-      - run:
-          name: Install Cypress
-          command: npm install cypress --save-dev       
+      #- run:
+      #    name: Install Cypress
+      #    command: npm install cypress --save-dev       
       - run:
           name: Open Cypress
-          command: yarn cypress open --config-file=cypress.config.js             
+          command: yarn cy:open-dragoncave           
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
