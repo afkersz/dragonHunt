@@ -34,15 +34,15 @@ jobs:
       - run:
           name: Install Moment
           command: yarn add moment
-      - cypress/run:
-          package-manager: yarn
-          start-command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'   
-      #- run:
-      #    name: Install Cypress
-      #    command: npm install cypress --save-dev       
-     # - run:
-      #    name: Open Cypress
-      #    command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'         
+      #- cypress/run:
+       #   package-manager: yarn
+       #   start-command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'   
+      - run:
+          name: Install Cypress
+          command: npm install cypress --save-dev       
+      - run:
+          name: Open Cypress
+          command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'         
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
