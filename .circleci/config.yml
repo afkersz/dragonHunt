@@ -1,8 +1,10 @@
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@3.1.2
 executors:
   main-executor:
     docker:
-      - image: 'cypress/base:18.16.0'
+      - image: 'cypress/base:18.12.1'
     resource_class: medium
     
 nightly:
