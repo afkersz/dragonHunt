@@ -42,7 +42,7 @@ jobs:
           command: npm install cypress --save-dev       
       - run:
           name: Open Cypress
-          command: yarn cypress run --headless --config-file ./cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'         
+          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'         
       - save_cache:
           key: v5-deps-{{ checksum "yarn.lock" }}
           paths:
