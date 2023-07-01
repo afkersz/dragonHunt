@@ -5,17 +5,9 @@ executors:
   main-executor:
     docker:
       - image: 'cimg/base:2023.06'
+      - image: 'cimg/node:16.20.1'
     resource_class: small
     
-nightly:
-  triggers:
-    - schedule:
-       cron: '3/5 * * * *'
-      filters:
-        branches:
-          only:
-            - main
-
 jobs:
   build:
     executor: main-executor
@@ -28,9 +20,9 @@ jobs:
       - run:
           name: Verify Cache
           command: ls -al ./            
-      - run:
-          name: Install Yarn
-          command: yarn install --frozen-lockfile --network-concurrency 1
+      ## - run:
+          ##name: Install Yarn
+          ##command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
           command: yarn add moment
