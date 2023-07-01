@@ -4,7 +4,7 @@ orbs:
 executors:
   main-executor:
     docker:
-      - image: 'cimg/base:2023.06'
+      ##- image: 'cimg/base:2023.06'
       - image: 'cimg/node:20.2.0'
     resource_class: small
     
