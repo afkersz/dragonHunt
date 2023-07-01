@@ -20,6 +20,7 @@ jobs:
       - run:
           name: Verify Cache
           command: ls -al ./            
+      - cypress/install    
       ## - run:
           ##name: Install Yarn
           ##command: yarn install --frozen-lockfile --network-concurrency 1
