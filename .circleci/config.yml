@@ -5,7 +5,7 @@ executors:
   main-executor:
     docker:
       ##- image: 'cimg/base:2023.06'
-      - image: 'cimg/node:20.2.0'
+      - image: 'cimg/node:16.20.1'
     resource_class: small
     
 jobs:
