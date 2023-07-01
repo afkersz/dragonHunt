@@ -12,6 +12,7 @@ jobs:
   build:
     executor: main-executor
     steps:
+      - cypress/install 
       - checkout
       - restore_cache:
           keys:  
@@ -19,8 +20,7 @@ jobs:
             - v2-deps-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
-          command: ls -al ./            
-      - cypress/install    
+          command: ls -al ./               
       ## - run:
           ##name: Install Yarn
           ##command: yarn install --frozen-lockfile --network-concurrency 1
