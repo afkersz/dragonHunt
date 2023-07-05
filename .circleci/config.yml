@@ -18,6 +18,8 @@ jobs:
           command: |
             apt-get update
             apt-get install -y jq
+            apk update
+            apk add git
       - checkout
       - cypress/install 
       - restore_cache:
