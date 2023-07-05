@@ -12,8 +12,8 @@ jobs:
   build:
     executor: main-executor
     steps:
-      - cypress/install 
       - checkout
+      - cypress/install 
       - restore_cache:
           keys:  
             - v5-deps-{{ checksum "yarn.lock" }}
