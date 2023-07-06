@@ -20,7 +20,6 @@ jobs:
             apt-get install -y jq
             apt-get install -y git
             git config --global --add safe.directory /tmp/_circleci_local_build_repo
-            npm install
       - checkout
       - cypress/install 
       - restore_cache:
