@@ -103,3 +103,4 @@ workflows:
   commit-workflow:
     jobs:
       - build
+      - test
