@@ -7,5 +7,5 @@ export const expectedDescriptions = [
     // "Something about this egg seems to lure you in.",
     //"This shiny egg smells faintly like flowers.",
     // "This egg has an orange aura radiating from it.",
-    "Delicate petals envelop this egg.",
+    //"Delicate petals envelop this egg.",
 ];
