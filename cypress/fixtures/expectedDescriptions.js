@@ -10,4 +10,6 @@ export const expectedDescriptions = [
     "Delicate petals envelop this egg.",
     "Something about this heavy egg unnerves you",
     "This egg is well-camouflaged.",
+    "The light swirls on this egg stand out against the dark underbrush.",
+    " It is difficult to discern this egg from its gloomy surroundings.",
 ];
