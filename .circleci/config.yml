@@ -22,8 +22,8 @@ jobs:
       - cypress/install 
       - restore_cache:
           keys:  
-            - v5-deps-{{ checksum "yarn.lock" }}
-            - v2-deps-{{ checksum "package-lock.json" }}
+            - v5-deps-refresh-{{ checksum "yarn.lock" }}
+            - v2-deps-refresh-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
           command: ls -al ./               
@@ -37,14 +37,14 @@ jobs:
        #   package-manager: yarn
        #   start-command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'               
       - save_cache:
-          key: v5-deps-{{ checksum "yarn.lock" }}
+          key: v5-deps-refresh-{{ checksum "yarn.lock" }}
           paths:
             - ./
             - ./node_modules
             - ~/.npm
             - ~/.cache        
       - save_cache:
-          key: v2-deps-{{ checksum "package-lock.json" }}
+          key: v2-deps-refresh-{{ checksum "package-lock.json" }}
           paths:
             - ./  
             - ~/.npm
@@ -62,8 +62,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:  
-            - v5-deps-{{ checksum "yarn.lock" }}
-            - v2-deps-{{ checksum "package-lock.json" }}
+            - v5-deps-refresh-{{ checksum "yarn.lock" }}
+            - v2-deps-refresh-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
           command: ls -al ./            
