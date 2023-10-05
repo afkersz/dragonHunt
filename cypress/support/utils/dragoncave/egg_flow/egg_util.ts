@@ -4,6 +4,49 @@ import { expectedRareDescriptions } from '../../../../fixtures/expectedRareDescr
 import navigateBiome from '../../../pages/navigateBiome';
 
 
+export function eggsearch() {
+    const maxRetries = 5; // Adjust the number of retries as needed
+    const retryInterval = 1000; // Adjust the interval in milliseconds
+
+    cy.wrap(biomes).each((biome) => {
+        navigateBiome[biome](); // Navigate to the current biome
+
+        let retries = 0;
+
+        function tryFindingEggs() {
+            cy.get('.eggs span[aria-hidden="true"]').should('be.visible').then(($eggs) => {
+                if ($eggs.length === 0) {
+                    if (retries < maxRetries) {
+                        // If no .eggs elements are found, wait and retry
+                        cy.log('No egg descriptions found. Waiting and retrying.');
+                        cy.wait(retryInterval);
+                        retries++;
+                        tryFindingEggs();
+                    } else {
+                        // Max retries reached, log an error or handle as needed
+                        cy.log('Max retries reached. Could not find egg descriptions.');
+                    }
+                } else {
+                    // Click on each .eggs element
+                    $eggs.each(($span) => {
+                        cy.wrap($span)
+                            .siblings('a')
+                            .click();
+                        cy.log('Clicked on egg description.');
+
+                        // Perform any additional actions or assertions after clicking
+                    });
+                }
+            });
+        }
+
+        // Start the retry function
+        tryFindingEggs();
+    });
+}
+
+
+
 export function eggSearchInEachBiome() {
 
     let descriptionFound = false;
@@ -12,7 +55,7 @@ export function eggSearchInEachBiome() {
 
     cy.visit('https://dragcave.net/dragons/1,1,0');  // Replace with the actual URL
 
-    cy.get('table._1k_0 td')  // Select all <td> elements within the table with class "_1k_0"
+    cy.get('*[class^="_dragonTable_root"]')  // Select all <td> elements within the table with class "_1k_0"
         .should('have.length.gt', 0)  // Make sure at least one such <td> is present
         .then(tdElements => {
             let eggCount = 0;
