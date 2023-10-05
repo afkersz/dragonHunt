@@ -84,7 +84,7 @@ jobs:
             - ~/.npm
             - ~/.cache        
       - save_cache:
-          key: v2-deps-{{ checksum "package-lock.json" }}
+          key: v2-deps-refersh-{{ checksum "package-lock.json" }}
           paths:
             - ./  
             - ~/.npm
