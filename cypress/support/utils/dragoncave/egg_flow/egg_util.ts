@@ -33,8 +33,6 @@ export function eggsearch() {
                             .siblings('a')
                             .click();
                         cy.log('Clicked on egg description.');
-
-                        // Perform any additional actions or assertions after clicking
                     });
                 }
             });
