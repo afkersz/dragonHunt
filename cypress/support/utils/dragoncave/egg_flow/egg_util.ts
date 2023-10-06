@@ -49,12 +49,10 @@ export function eggSearchInEachBiome() {
 
     let descriptionFound = false;
 
-    // eggcount
+    cy.visit('https://dragcave.net/dragons/1,1,0');
 
-    cy.visit('https://dragcave.net/dragons/1,1,0');  // Replace with the actual URL
-
-    cy.get('*[class^="_dragonTable_root"]')  // Select all <td> elements within the table with class "_1k_0"
-        .should('have.length.gt', 0)  // Make sure at least one such <td> is present
+    cy.get('*[class^="_dragonTable_root"]')
+        .should('have.length.gt', 0)
         .then(tdElements => {
             let eggCount = 0;
 
