@@ -27,5 +27,5 @@ export function checkTimeAndLogin() {
 
   fillOutLoginAndPassword();
 
-  // cy.wait(remainingTime);
+  // cy.wait(remainingTime); add
 }
