@@ -64,6 +64,7 @@ jobs:
           keys:  
             - v5-deps-refresh-{{ checksum "yarn.lock" }}
             - v2-deps-refresh-{{ checksum "package-lock.json" }}
+            - v2-deps-refersh-{{ checksum "cypress" }}
       - run:
           name: Verify Cache
           command: ls -al ./            
@@ -88,7 +89,11 @@ jobs:
           paths:
             - ./  
             - ~/.npm
-            - ~/.cache       
+            - ~/.cache
+      - save_cache:
+          key: v2-deps-refersh-{{ checksum "cypress" }}
+          paths:
+            - ./                  
       - run:
           name: Display System Clock
           command: date      
