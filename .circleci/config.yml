@@ -107,5 +107,9 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       ## - test
