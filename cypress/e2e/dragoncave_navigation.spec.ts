@@ -7,7 +7,6 @@ describe('User wants to be able to navigate and login into Dragon Cave successfu
   context('Given that we know our credentials for DragonCave', () => {
     beforeEach('Navigates to DragonCave and Login', () => {
       checkTimeAndLogin();
-
     });
 
     it('should navigate to different biomes, verify the specific description, and navigate to the next biome if it fails', () => {

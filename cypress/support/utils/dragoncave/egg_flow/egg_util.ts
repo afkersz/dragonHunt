@@ -62,11 +62,11 @@ export function eggSearchInEachBiome() {
                 }
             });
 
-            cy.log(`Number of "Egg" occurrences: ${eggCount}`);
+            //cy.log(`Number of "Egg" occurrences: ${eggCount}`);
 
             let expectedDescriptionsToUse = eggCount >= 3 ? expectedRareDescriptions : expectedDescriptions;
 
-            cy.log(`Using ${expectedDescriptionsToUse === expectedRareDescriptions ? 'expectedRareDescriptions' : 'expectedDescriptions'}`);
+            //cy.log(`Using ${expectedDescriptionsToUse === expectedRareDescriptions ? 'expectedRareDescriptions' : 'expectedDescriptions'}`);
 
             //eggsearch
             cy.wrap(biomes).each((biome) => {
