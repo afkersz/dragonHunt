@@ -60,10 +60,10 @@ jobs:
     executor: main-executor
     steps:
       - checkout
-      ##- restore_cache:
-      ##    keys:  
-      ##      - v5-deps-refresh-{{ checksum "yarn.lock" }}
-      ##      - v2-deps-refresh-{{ checksum "package-lock.json" }}
+      - restore_cache:
+          keys:  
+            - v5-deps-refresh-{{ checksum "yarn.lock" }}
+            - v2-deps-refresh-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
           command: ls -al ./            
