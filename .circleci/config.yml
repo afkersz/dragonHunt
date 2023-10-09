@@ -60,11 +60,10 @@ jobs:
     executor: main-executor
     steps:
       - checkout
-      - restore_cache:
-          keys:  
-            - v5-deps-refresh-{{ checksum "yarn.lock" }}
-            - v2-deps-refresh-{{ checksum "package-lock.json" }}
-            - v2-deps-refersh-{{ checksum "cypress" }}
+      ##- restore_cache:
+      ##    keys:  
+      ##      - v5-deps-refresh-{{ checksum "yarn.lock" }}
+      ##      - v2-deps-refresh-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
           command: ls -al ./            
@@ -73,10 +72,7 @@ jobs:
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
-          command: yarn add moment
-      #- cypress/run:
-       #   package-manager: yarn
-       #   start-command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'               
+          command: yarn add moment            
       - save_cache:
           key: v5-deps-refresh-{{ checksum "yarn.lock" }}
           paths:
@@ -89,11 +85,7 @@ jobs:
           paths:
             - ./  
             - ~/.npm
-            - ~/.cache
-      - save_cache:
-          key: v2-deps-refersh-{{ checksum "cypress" }}
-          paths:
-            - ./                  
+            - ~/.cache               
       - run:
           name: Display System Clock
           command: date      
@@ -107,5 +99,9 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       ## - test
