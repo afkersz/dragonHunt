@@ -51,23 +51,28 @@ export function eggSearchInEachBiome() {
 
     cy.visit('https://dragcave.net/dragons/1,1,0');
 
+    let eggCount = 0; // Declare the eggCount variable before using it
+
     //cy.get('*[class^="_dragonTable_root"]')
     cy.get('#dragonlist')
         .should('have.length.gt', 0)
-        .then(tdElements => {
-            let eggCount = 0;
+        .find('tbody > tr') // Select all rows in the table body
+        .each(($row) => {
+            cy.wrap($row)
+                .find('td:nth-child(3)') // Select the 3rd column
+                .invoke('text') // Get the text content of the 3rd column
+                .then((text) => {
+                    if (text.trim() === 'Egg') {
+                        eggCount++;
+                    }
+                });
+        })
+        .then(() => {
+            cy.log(`Number of "Egg" occurrences in the 3rd column: ${eggCount}`);
+            let expectedDescriptionsToUse = eggCount >= 2 ? expectedRareDescriptions : expectedDescriptions;
 
-            tdElements.each((index, element) => {
-                if (Cypress.$(element).text().trim() === 'Egg') {
-                    eggCount++;
-                }
-            });
 
-            //cy.log(`Number of "Egg" occurrences: ${eggCount}`);
-
-            let expectedDescriptionsToUse = eggCount >= 3 ? expectedRareDescriptions : expectedDescriptions;
-
-            //cy.log(`Using ${expectedDescriptionsToUse === expectedRareDescriptions ? 'expectedRareDescriptions' : 'expectedDescriptions'}`);
+            cy.log(`Using ${expectedDescriptionsToUse === expectedRareDescriptions ? 'expectedRareDescriptions' : 'expectedDescriptions'}`);
 
             //eggsearch
             cy.wrap(biomes).each((biome) => {
