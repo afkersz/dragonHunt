@@ -62,8 +62,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:  
-            - v5-deps-refresh21-{{ checksum "yarn.lock" }}
-            - v2-deps-refresh21-{{ checksum "package-lock.json" }}
+            - v5-deps-refresh22-{{ checksum "yarn.lock" }}
+            - v2-deps-refresh22-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
           command: ls -al ./            
@@ -74,13 +74,13 @@ jobs:
           name: Install Moment
           command: yarn add moment            
       - save_cache:
-          key: v5-deps-refresh21-{{ checksum "yarn.lock" }}
+          key: v5-deps-refresh22-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
             - ~/.npm
             - ~/.cache        
       - save_cache:
-          key: v2-deps-refersh21-{{ checksum "package-lock.json" }}
+          key: v2-deps-refersh22-{{ checksum "package-lock.json" }}
           paths: 
             - ~/.npm
             - ~/.cache               
