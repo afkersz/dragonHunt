@@ -1,49 +1,7 @@
 import { biomes } from '../../../../fixtures/biomes.js';
 import { expectedDescriptions } from '../../../../fixtures/expectedDescriptions.js';
 import { expectedRareDescriptions } from '../../../../fixtures/expectedRareDescriptions.js';
-import navigateBiome from '../../../pages/navigateBiome';
-
-
-export function eggsearch() {
-    const maxRetries = 5; // Adjust the number of retries as needed
-    const retryInterval = 1000; // Adjust the interval in milliseconds
-
-    cy.wrap(biomes).each((biome) => {
-        navigateBiome[biome](); // Navigate to the current biome
-
-        let retries = 0;
-
-        function tryFindingEggs() {
-            cy.get('.eggs span[aria-hidden="true"]').should('be.visible').then(($eggs) => {
-                if ($eggs.length === 0) {
-                    if (retries < maxRetries) {
-                        // If no .eggs elements are found, wait and retry
-                        cy.log('No egg descriptions found. Waiting and retrying.');
-                        cy.wait(retryInterval);
-                        retries++;
-                        tryFindingEggs();
-                    } else {
-                        // Max retries reached, log an error or handle as needed
-                        cy.log('Max retries reached. Could not find egg descriptions.');
-                    }
-                } else {
-                    // Click on each .eggs element
-                    $eggs.each(($span) => {
-                        cy.wrap($span)
-                            .siblings('a')
-                            .click();
-                        cy.log('Clicked on egg description.');
-                    });
-                }
-            });
-        }
-
-        // Start the retry function
-        tryFindingEggs();
-    });
-}
-
-
+import { navigateBiome } from '../../../pages/biomePage.ts';
 
 export function eggSearchInEachBiome() {
 
@@ -53,7 +11,6 @@ export function eggSearchInEachBiome() {
 
     let eggCount = 0; // Declare the eggCount variable before using it
 
-    //cy.get('*[class^="_dragonTable_root"]')
     cy.get('#dragonlist')
         .should('have.length.gt', 0)
         .find('tbody > tr') // Select all rows in the table body

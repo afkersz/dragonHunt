@@ -1,11 +1,11 @@
-import * as data from '../../../../fixtures/common_data.json';
 import { homePage } from '../../../pages/homePage';
 import moment from 'moment'
 
+
 export function fillOutLoginAndPassword() {
 
-  const username = data.Data.account_details.username;
-  const { password } = data.Data.account_details;
+  const username = Cypress.env('USERNAME');
+  const password = Cypress.env('PASSWORD');
 
   cy.visit('/');
   cy.clearCookies();
@@ -18,7 +18,8 @@ export function fillOutLoginAndPassword() {
 
 export function checkTimeAndLogin() {
   const currentTime = Cypress.env('CIRCLECI') ? Date.now() : moment().valueOf();
-  cy.log(`Current Time: ${currentTime}`);
+  const displayCurrentTime = Cypress.env('CIRCLECI') ? Date.now() : moment().format('LT').valueOf();
+  cy.log(`Current Time: ${displayCurrentTime}`);
 
   const nextInterval = Math.ceil(currentTime / (5 * 60 * 1000)) * (5 * 60 * 1000);
   const remainingTime = nextInterval - currentTime;
@@ -26,6 +27,6 @@ export function checkTimeAndLogin() {
   Cypress.env('remainingTime', remainingTime.toString());
 
   fillOutLoginAndPassword();
-
-  cy.wait(remainingTime); 
+  cy.log(`Waiting for: ${remainingTime}`);
+  cy.wait(remainingTime);
 }

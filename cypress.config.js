@@ -1,8 +1,10 @@
 import { defineConfig } from 'cypress'
+import globalEnvironmentVars from 'globalEnvironmentVars.json';
 
 export default defineConfig({
   env: {
-    CURRENT_TIME: "123456789"
+    CURRENT_TIME: "123456789",
+    ...globalEnvironmentVars,
   },
 
   //pageLoadTimeout: 120000, // Increase the timeout value

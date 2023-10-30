@@ -13,14 +13,4 @@ const elCommon = {
 
 };
 
-const eggPage = {
-    eggDescriptionFirstEgg() {
-        return cy.get('.eggs > :nth-child(1)')
-    },
-    eggFirstIcon() {
-        return cy.get('.eggs > :nth-child(1) > a > img')
-    },
-
-};
-
-export { eggPage, elCommon };
+export { elCommon };

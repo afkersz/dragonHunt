@@ -19,4 +19,4 @@ const navigateBiome = {
     },
 };
 
-export default navigateBiome;
+export { navigateBiome };
