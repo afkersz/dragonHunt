@@ -6,6 +6,7 @@ executors:
     docker:
       - image: 'cypress/base:18.12.1'
     resource_class: small
+    
 
 jobs:
   test:
@@ -92,7 +93,7 @@ jobs:
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
           command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'  
 
-runner-test:
+  runner-test:
     machine: true
     resource_class: afkersz/dragoncaveclass
     steps:
@@ -128,6 +129,7 @@ runner-test:
           name: Running Code
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
           command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'  
+  
 
 
 workflows:
