@@ -107,7 +107,7 @@ jobs:
           command: ls -al ./            
       - run:
           name: Install Yarn
-          command: sudo npm install -g yarn
+          command: npm install -g yarn
       - run:
           name: Install Moment
           command: yarn add moment            
@@ -131,7 +131,7 @@ jobs:
           command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'  
       - run: 
           name: Uninstall Yarn
-          command: sudo npm uninstall -g yarn
+          command: npm uninstall -g yarn
 
 workflows:
   version: 2
