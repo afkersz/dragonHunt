@@ -74,7 +74,7 @@ jobs:
           command: ls -al ./            
       - run:
           name: Install Yarn
-          command: yarn install --frozen-lockfile --network-concurrency 1
+          command: yarn install --frozen-lockfile --network-concurrency 1 --ignore-engines
       - run:
           name: Install Moment
           command: yarn add moment            
@@ -133,9 +133,6 @@ jobs:
           name: Running Code
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
           command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'  
-      - run: 
-          name: Uninstall Yarn
-          command: yarn uninstall --frozen-lockfile --network-concurrency 1
 
 workflows:
   version: 2
