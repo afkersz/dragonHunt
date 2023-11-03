@@ -102,6 +102,10 @@ jobs:
     executor: node-executor
     steps:
       - checkout
+      - run:
+          name: Verify GitHub Secret
+          command: |
+            echo "GitHub Secret: ${{ secrets.GLOBALDRAGONCAVESECRET }}"
       - restore_cache:
           keys:  
             - v5-deps-refresh23-{{ checksum "yarn.lock" }}
@@ -111,16 +115,7 @@ jobs:
           command: ls -al ./   
       - run:
           name: Access and Decode GitHub Secret
-          command: |
-            # Pass the secret value to a Bash variable
-            MY_SECRET="$GLOBALDRAGONCAVESECRET"
-            # Decode the Base64-encoded secret and store it in globalEnvironmentVars.json
-            echo "$MY_SECRET" | base64 --decode > globalEnvironmentVars.json
-            echo "Decoded Secret: $(cat globalEnvironmentVars.json)"  
-      - run:
-          name: Verify GitHub Secret
-          command: |
-            echo "GitHub Secret: ${{ secrets.GLOBALDRAGONCAVESECRET }}"
+          command: echo ${{ secrets.GLOBALDRAGONCAVESECRET }} | base64 --decode GLOBALDRAGONCAVESECRET 
       - run:
           name: Ignore Engines
           command: yarn config set ignore-engines true    
