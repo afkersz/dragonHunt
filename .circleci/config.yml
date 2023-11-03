@@ -115,7 +115,7 @@ jobs:
           command: ls -al ./   
       - run:
           name: Access and Decode GitHub Secret
-          command: echo ${{ secrets.GLOBALDRAGONCAVESECRET }} | base64 --decode > globalEnvironmentVars.json
+          command: echo "$globalvalue" | base64 --decode > globalEnvironmentVars.json
       - run:
           name: Ignore Engines
           command: yarn config set ignore-engines true    
