@@ -102,10 +102,6 @@ jobs:
     executor: node-executor
     steps:
       - checkout
-      - run:
-          name: Verify GitHub Secret
-          command: |
-            echo "GitHub Secret: ${{ secrets.GLOBALDRAGONCAVESECRET }}"
       - restore_cache:
           keys:  
             - v5-deps-refresh23-{{ checksum "yarn.lock" }}
