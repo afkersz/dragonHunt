@@ -110,11 +110,11 @@ jobs:
           name: Verify Cache
           command: ls -al ./   
       - run:
-          name: Access GitHub Secret
+          name: Access and Decode GitHub Secret
           command: |
-            # Decode the Base64-encoded secret
-            BASE64_SECRET=$(echo "${GLOBALDRAGONCAVESECRET}" | base64 --decode > globalEnvironmentVars.json
-            echo "Decoded Secret: $GLOBALDRAGONCAVESECRET"    
+            # Decode the Base64-encoded secret and store it in globalEnvironmentVars.json
+            echo "${GLOBALDRAGONCAVESECRET}" | base64 --decode > globalEnvironmentVars.json
+            echo "Decoded Secret: $(cat globalEnvironmentVars.json)"    
       - run:
           name: Ignore Engines
           command: yarn config set ignore-engines true    
