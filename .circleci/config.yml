@@ -113,12 +113,12 @@ jobs:
           name: Access and Decode GitHub Secret
           command: |
             # Decode the Base64-encoded secret and store it in globalEnvironmentVars.json
-            echo "${GLOBALDRAGONCAVESECRET}" | base64 --decode > globalEnvironmentVars.json
+            echo "${{ secrets.GLOBALDRAGONCAVESECRET }}" | base64 --decode > globalEnvironmentVars.json
             echo "Decoded Secret: $(cat globalEnvironmentVars.json)"    
       - run:
           name: Verify GitHub Secret
           command: |
-            echo "GitHub Secret: ${GLOBALDRAGONCAVESECRET}"
+            echo "GitHub Secret: ${{ secrets.GLOBALDRAGONCAVESECRET }}"
       - run:
           name: Ignore Engines
           command: yarn config set ignore-engines true    
