@@ -116,9 +116,9 @@ jobs:
             echo "${GLOBALDRAGONCAVESECRET}" | base64 --decode > globalEnvironmentVars.json
             echo "Decoded Secret: $(cat globalEnvironmentVars.json)"    
       - run:
-          name: Display Decoded Content
+          name: Verify GitHub Secret
           command: |
-            cat globalEnvironmentVars.json
+            echo "GitHub Secret: ${GLOBALDRAGONCAVESECRET}"
       - run:
           name: Ignore Engines
           command: yarn config set ignore-engines true    
