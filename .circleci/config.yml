@@ -113,7 +113,7 @@ jobs:
           name: Access and Decode GitHub Secret
           command: |
             # Pass the secret value to a Bash variable
-            MY_SECRET="${{ secrets.GLOBALDRAGONCAVESECRET }}"
+            MY_SECRET="$GLOBALDRAGONCAVESECRET"
             # Decode the Base64-encoded secret and store it in globalEnvironmentVars.json
             echo "$MY_SECRET" | base64 --decode > globalEnvironmentVars.json
             echo "Decoded Secret: $(cat globalEnvironmentVars.json)"  
