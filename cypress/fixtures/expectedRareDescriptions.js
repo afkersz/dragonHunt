@@ -8,4 +8,5 @@ export const expectedRareDescriptions = [
     //"This shiny egg smells faintly like flowers.",
     // "This egg has an orange aura radiating from it.",
     //"Delicate petals envelop this egg.",
+    "Aww... It's a cute baby dragon. Icicles keep forming on its body, but it doesn't seem to be bothered by the cold.",
 ];
