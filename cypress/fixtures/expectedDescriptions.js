@@ -12,4 +12,9 @@ export const expectedDescriptions = [
     //"This egg is well-camouflaged.",
     //"The light swirls on this egg stand out against the dark underbrush.",
     //" It is difficult to discern this egg from its gloomy surroundings.",
+    "This egg looks like it doesn't belong; it is brightly colored with white spots.",
+    "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much warmer than the rest of the eggs.",
+    "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much lighter than the other eggs.",
+    "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much heavier than the other eggs.",
+    "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much lighter than the other eggs.",
 ];
