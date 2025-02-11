@@ -143,10 +143,10 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      ##- runner-test
-      - build:
-          filters:
-            branches:
-              only:
-                - main
-      - test
+      - runner-test
+      # - build:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
+      # - test
