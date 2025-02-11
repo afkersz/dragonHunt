@@ -4,13 +4,12 @@ orbs:
 executors:
   main-executor:
     docker:
-      - image: 'cypress/base:18.12.1'
+      - image: "cypress/base:18.12.1"
     resource_class: small
   node-executor:
     docker:
-      - image: 'cypress/base:18.12.1'
-    resource_class: 'afkersz/dragoncaveclass'
-    
+      - image: "cypress/base:18.12.1"
+    resource_class: "afkersz/dragoncaveclass"
 
 jobs:
   test:
@@ -24,78 +23,78 @@ jobs:
             apt-get install -y git
             git config --global --add safe.directory /tmp/_circleci_local_build_repo
       - checkout
-      - cypress/install 
+      - cypress/install
       - restore_cache:
-          keys:  
+          keys:
             - v5-deps-refresh-{{ checksum "yarn.lock" }}
             - v2-deps-refresh-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
-          command: ls -al ./               
+          command: ls -al ./
       ## - run:
-          ##name: Install Yarn
-          ##command: yarn install --frozen-lockfile --network-concurrency 1
+      ##name: Install Yarn
+      ##command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
           command: yarn add moment
       #- cypress/run:
-       #   package-manager: yarn
-       #   start-command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'               
+      #   package-manager: yarn
+      #   start-command: yarn cypress run --headless --config-file cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
       - save_cache:
           key: v5-deps-refresh-{{ checksum "yarn.lock" }}
           paths:
             - .
             - ./node_modules
             - ~/.npm
-            - ~/.cache        
+            - ~/.cache
       - save_cache:
           key: v2-deps-refresh-{{ checksum "package-lock.json" }}
           paths:
-            - ./  
+            - ./
             - ~/.npm
-            - ~/.cache       
+            - ~/.cache
       - run:
           name: Display System Clock
-          command: date      
-      - run: 
+          command: date
+      - run:
           name: Running Code
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
-          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'  
+          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
   build:
     executor: main-executor
     steps:
       - checkout
       - restore_cache:
-          keys:  
+          keys:
             - v5-deps-refresh23-{{ checksum "yarn.lock" }}
             ##- v2-deps-refresh21-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
-          command: ls -al ./            
+          command: ls -al ./
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
-          command: yarn add moment            
+          command: yarn add moment
       - save_cache:
           key: v5-deps-refresh23-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
             - ~/.npm
-            - ~/.cache        
-     ## - save_cache:
-     ##     key: v2-deps-refersh21-{{ checksum "package-lock.json" }}
-     ##     paths: 
+            - ~/.cache
+      ## - save_cache:
+      ##     key: v2-deps-refersh21-{{ checksum "package-lock.json" }}
+      ##     paths:
       ##      - ~/.npm
-       ##     - ~/.cache               
+      ##     - ~/.cache
       - run:
           name: Display System Clock
-          command: date      
-      - run: 
+          command: date
+      - run:
           name: Running Code
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
-          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'  
+          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
 
   runner-test:
     ##machine: true
@@ -103,39 +102,39 @@ jobs:
     steps:
       - checkout
       ##- restore_cache:
-      ##    keys:  
+      ##    keys:
       ##      - v5-deps-refresh23-{{ checksum "yarn.lock" }}
-            ##- v2-deps-refresh21-{{ checksum "package-lock.json" }}
+      ##- v2-deps-refresh21-{{ checksum "package-lock.json" }}
       - run:
           name: Verify Cache
-          command: ls -al ./   
+          command: ls -al ./
       - run:
           name: Access and Decode GitHub Secret
           command: echo "$globalvalue" | base64 --decode > globalEnvironmentVars.json
       - run:
           name: Ignore Engines
-          command: yarn config set ignore-engines true    
+          command: yarn config set ignore-engines true
       - run:
           name: Install Yarn
           command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
-          command: yarn add moment            
+          command: yarn add moment
       ##- save_cache:
       ##    key: v5-deps-refresh23-{{ checksum "yarn.lock" }}
       ##    paths:
       ##      - ./node_modules
       ##      - ~/.npm
-      ##      - ~/.cache        
-     ## - save_cache:
-     ##     key: v2-deps-refersh21-{{ checksum "package-lock.json" }}
-     ##     paths: 
+      ##      - ~/.cache
+      ## - save_cache:
+      ##     key: v2-deps-refersh21-{{ checksum "package-lock.json" }}
+      ##     paths:
       ##      - ~/.npm
-       ##     - ~/.cache               
+      ##     - ~/.cache
       - run:
           name: Display System Clock
-          command: date      
-      - run: 
+          command: date
+      - run:
           name: Running Code
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
           command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
@@ -144,10 +143,10 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - runner-test    
-      ##- build:
-      ##    filters:
-      ##      branches:
-      ##        only:
-      ##          - main
-      ## - test
+      ##- runner-test
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+      - test
