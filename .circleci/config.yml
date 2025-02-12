@@ -9,7 +9,8 @@ executors:
   node-executor:
     docker:
       - image: "cypress/base:18.12.1"
-    resource_class: "afkersz/dragoncaveclass"
+    machine: true
+    resource_class: "afkersz/myresourceclass"
 
 jobs:
   test:
