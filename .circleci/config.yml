@@ -31,9 +31,9 @@ jobs:
       - run:
           name: Verify Cache
           command: ls -al ./
-      ## - run:
-      ##name: Install Yarn
-      ##command: yarn install --frozen-lockfile --network-concurrency 1
+      - run:
+          name: Install Yarn
+          command: yarn install --frozen-lockfile --network-concurrency 1
       - run:
           name: Install Moment
           command: yarn add moment
