@@ -9,7 +9,6 @@ executors:
   node-executor:
     docker:
       - image: "cypress/base:18.12.1"
-    machine: true
     resource_class: "afkersz/myresourceclass"
 
 jobs:
@@ -98,7 +97,7 @@ jobs:
           command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
 
   runner-test:
-    ##machine: true
+    machine: true
     executor: node-executor
     steps:
       - checkout
