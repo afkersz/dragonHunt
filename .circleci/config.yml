@@ -146,8 +146,8 @@ jobs:
       - run:
           name: Running Code
           ##command: yarn cypress run --config-file ./cypress.config.js --spec "cypress/e2e/dragoncave_navigation.spec.ts"
-          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
-
+          ##command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/dragoncave_navigation.spec.ts'
+          command: yarn cypress run --headless --config-file $PWD/cypress.config.js --spec 'cypress/e2e/*.spec.ts'
 workflows:
   version: 2
   commit-workflow:
