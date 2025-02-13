@@ -1,17 +1,21 @@
-import { checkTimeAndLogin, fillOutLoginAndPassword } from "../support/utils/dragoncave/login_flow/login_util"
-import { eggSearchInEachBiome } from "../support/utils/dragoncave/egg_flow/egg_util"
+import { fillOutLoginAndPassword } from "../support/utils/dragoncave/login_flow/login_util"
+import { executeEggSearch} from "../support/utils/dragoncave/egg_flow/egg_util"
 
 
-describe('Given User wants to be able to navigate and login into Dragon Cave successfully', {
+describe('Given user wants successfully find specific eggs in each biome', {
 }, () => {
-  context('When that we want to verify our credentials for DragonCave', () => {
-    before('Then user navigates to DragonCave and Logs in', () => {
+  context('When user has the correct credentials for DragonCave', () => {
+    before('Then user navigates to DragonCave to lgoin', () => {
       //checkTimeAndLogin();
       fillOutLoginAndPassword();
     });
 
-    it('and should navigate to each biome and looks for specific eggs', () => {
-      eggSearchInEachBiome();
+    it('And user navigates to dragon page to filter by eggs', () => {
+      cy.visit('/dragons/1,1,0');
+    });
+
+    it('And should verify that there are avaliable egg slots', () => {
+      executeEggSearch();
     });
 
   });

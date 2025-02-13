@@ -28,6 +28,7 @@ export default defineConfig({
       "hb-api.omnitagjs.com",
       "prebid.media.net"
     ],
+    testIsolation: false,
     chromeWebSecurity: false,
     experimentalModifyObstructiveThirdPartyCode: true,
     video: false,

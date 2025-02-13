@@ -3,18 +3,29 @@ import moment from 'moment'
 
 
 export function fillOutLoginAndPassword() {
-
   const username = Cypress.env('USERNAME');
   const password = Cypress.env('PASSWORD');
 
   cy.visit('/');
   cy.clearCookies();
 
-  homePage.inputUserName().type(username);
-  homePage.inputPassword().type(password);
-  homePage.selectLogin().click();
+  cy.get('body').then(($body) => {
+      if ($body.find('._p_3').length > 0) {
+          cy.get('._p_3').invoke('text').then((text) => {
+              if (text.includes('Logged in as')) {
+                  cy.log('User already logged in. Logging out first...');
+                  cy.get('[href="/logout"]').click();
+                  cy.visit('/');
+              }
+          });
+      }
 
+      homePage.inputUserName().type(username);
+      homePage.inputPassword().type(password);
+      homePage.selectLogin().click();
+  });
 }
+
 
 export function checkTimeAndLogin() {
   const currentTime = Cypress.env('CIRCLECI') ? Date.now() : moment().valueOf();
