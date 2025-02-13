@@ -105,7 +105,7 @@ jobs:
           command: |
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get install -y nodejs
-            npm install -g yarn
+            sudo npm install -g yarn
             yarn global add cypress
       - run:
           name: Verify Cypress Installation
