@@ -7,8 +7,7 @@ executors:
       - image: "cypress/base:18.12.1"
     resource_class: small
   node-executor:
-    machine:
-      image: ubuntu-2204:current
+    machine: true
     resource_class: "afkersz/myresourceclass"
 
 jobs:
