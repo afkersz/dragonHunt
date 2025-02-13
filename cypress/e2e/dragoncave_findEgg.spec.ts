@@ -10,7 +10,7 @@ describe('Given user wants successfully find specific eggs in each biome', {
       fillOutLoginAndPassword();
     });
 
-    it('And user navigates to dragon page to filter by eggs', () => {
+    it('And user navigates to dragon page', () => {
       cy.visit('/dragons/1,1,0');
     });
 
