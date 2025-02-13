@@ -109,7 +109,7 @@ jobs:
             yarn global add cypress
       - run:
           name: Verify Cypress Installation
-          command: cypress --version
+          command: npx cypress --version
       ##- restore_cache:
       ##    keys:
       ##      - v5-deps-refresh23-{{ checksum "yarn.lock" }}
