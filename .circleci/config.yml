@@ -8,7 +8,7 @@ executors:
     resource_class: small
   node-executor:
     machine:
-      - image: "cypress/base:18.12.1"
+      image: ubuntu-2204:current
     resource_class: "afkersz/myresourceclass"
 
 jobs:
@@ -101,6 +101,16 @@ jobs:
     executor: node-executor
     steps:
       - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            npm install -g yarn
+            yarn global add cypress
+      - run:
+          name: Verify Cypress Installation
+          command: cypress --version
       ##- restore_cache:
       ##    keys:
       ##      - v5-deps-refresh23-{{ checksum "yarn.lock" }}
