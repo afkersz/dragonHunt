@@ -6,7 +6,6 @@ describe('Given user wants successfully find specific eggs in each biome', {
 }, () => {
   context('When user has the correct credentials for DragonCave', () => {
     before('User navigates to DragonCave to login', () => {
-      //checkTimeAndLogin();
       fillOutLoginAndPassword();
     });
 
